@@ -36,7 +36,7 @@ namespace SteeringCalcs
         // be explained in class (Week 2).
         public static Vector2 DesiredVelToForce(Vector2 desiredVel, Rigidbody2D rb, float accelTime, float maxAccel)
         {
-            Vector2 accel = (desiredVel - rb.velocity) / accelTime;
+            Vector2 accel = (desiredVel - rb.linearVelocity) / accelTime;
 
             if (accel.magnitude > maxAccel)
             {
@@ -231,7 +231,7 @@ namespace SteeringCalcs
 
                 foreach (Transform flockMember in neighbours)
                 {
-                    sumVel += flockMember.GetComponent<Rigidbody2D>().velocity;
+                    sumVel += flockMember.GetComponent<Rigidbody2D>().linearVelocity;
                 }
 
                 // Note: To calculate the average velocity (per the lecture slides), we should divide sumVel

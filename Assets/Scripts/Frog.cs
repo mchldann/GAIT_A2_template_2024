@@ -70,7 +70,7 @@ public class Frog : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject bubble = Instantiate(bubblePrefab, transform.position + transform.up.normalized, Quaternion.identity);
-            bubble.GetComponent<Rigidbody2D>().velocity = _rb.velocity + 5.0f * (Vector2)transform.up.normalized;
+            bubble.GetComponent<Rigidbody2D>().linearVelocity = _rb.linearVelocity + 5.0f * (Vector2)transform.up.normalized;
         }
 
         // Check whether the player right-clicked (mouse button #1).
@@ -136,10 +136,10 @@ public class Frog : MonoBehaviour
 
     private void UpdateAppearance()
     {
-        if (_rb.velocity.magnitude > Constants.MIN_SPEED_TO_ANIMATE)
+        if (_rb.linearVelocity.magnitude > Constants.MIN_SPEED_TO_ANIMATE)
         {
             _animator.SetBool("Walking", true);
-            transform.up = _rb.velocity;
+            transform.up = _rb.linearVelocity;
         }
         else
         {
@@ -149,12 +149,12 @@ public class Frog : MonoBehaviour
 
     public void EnterWater()
     {
-        _rb.drag = WaterDrag;
+        _rb.linearDamping = WaterDrag;
     }
 
     public void ExitWater()
     {
-        _rb.drag = 0.0f;
+        _rb.linearDamping = 0.0f;
     }
 
     public void TakeDamage()

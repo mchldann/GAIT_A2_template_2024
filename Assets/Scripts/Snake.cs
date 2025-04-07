@@ -225,10 +225,10 @@ public class Snake : MonoBehaviour
                 break;
         }
 
-        if (_rb.velocity.magnitude > Constants.MIN_SPEED_TO_ANIMATE)
+        if (_rb.linearVelocity.magnitude > Constants.MIN_SPEED_TO_ANIMATE)
         {
             // Determine the bearing of the snake in degrees (between -180 and 180)
-            float angle = Mathf.Atan2(_rb.velocity.y, _rb.velocity.x) * Mathf.Rad2Deg;
+            float angle = Mathf.Atan2(_rb.linearVelocity.y, _rb.linearVelocity.x) * Mathf.Rad2Deg;
 
             if (angle > -135.0f && angle <= -45.0f) // Down
             {
