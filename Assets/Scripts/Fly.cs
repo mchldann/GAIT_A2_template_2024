@@ -131,8 +131,8 @@ public class Fly : MonoBehaviour
         if (_frog != null)
         {
             // Check if we've been scared by the frog.
-            if (_frogRb.linearVelocity.magnitude >= FrogAlertSpeed && ((transform.position - _frog.transform.position).magnitude < FrogMovingFleeRange)
-                || _frogRb.linearVelocity.magnitude < FrogAlertSpeed && ((transform.position - _frog.transform.position).magnitude < FrogStillFleeRange))
+            if (_frogRb.velocity.magnitude >= FrogAlertSpeed && ((transform.position - _frog.transform.position).magnitude < FrogMovingFleeRange)
+                || _frogRb.velocity.magnitude < FrogAlertSpeed && ((transform.position - _frog.transform.position).magnitude < FrogStillFleeRange))
             {
                 HandleEvent(FlyEvent.ScaredByFrog);
             }
@@ -311,7 +311,7 @@ public class Fly : MonoBehaviour
 
     private void UpdateAppearance()
     {
-        _sr.flipX = _rb.linearVelocity.x > 0;
+        _sr.flipX = _rb.velocity.x > 0;
 
         // Update color to provide a visual indication of the current state
         switch (State)
